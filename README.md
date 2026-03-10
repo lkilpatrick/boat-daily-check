@@ -4,6 +4,37 @@ Beautiful, automated daily email reports for Victron Energy power systems.
 
 ![Status](https://img.shields.io/badge/status-stable-brightgreen) ![License](https://img.shields.io/badge/license-MIT-blue) ![OpenClaw](https://img.shields.io/badge/OpenClaw-Skill-blue)
 
+## What is Boat Daily Check?
+
+**Stop logging into VRM every morning.** Boat Daily Check automatically monitors your Victron power systems and sends beautiful daily email reports showing:
+
+- 🔋 Battery state of charge, voltage, current, temperature
+- ☀️ Solar generation & daily yield
+- 🔌 Inverter/AC power status
+- 🚨 Active alarms and alerts
+- 📊 Real-time hardware status
+
+Perfect for boat owners, RV adventurers, and anyone with Victron power systems who wants to monitor their setup without manual VRM dashboard checks.
+
+### The Problem It Solves
+
+- **Manual checking is tedious**: Log into VRM daily, navigate to your installation, check battery status
+- **Easy to miss alerts**: Alarms buried in dashboards, no notifications
+- **Multi-boat headache**: Multiple installations mean multiple logins
+- **No historical context**: Quick snapshots, no tracking over time
+
+### The Solution
+
+One beautiful email every morning with everything you need to know about your power systems. Works standalone or integrated into your morning routine (fishing reports, weather, boat status—all in one email).
+
+### Built for Real-World Use
+
+- Used by boat owners monitoring live systems (Pitter Patter & Pegasus)
+- Battle-tested Victron VRM API integration
+- Production-grade Python code with error handling
+- Comprehensive documentation for customization
+- MIT licensed—free to use, modify, and share
+
 ## Features
 
 ✨ **Real-time Battery Monitoring**
@@ -309,6 +340,39 @@ html.replace("{{boat.mid_voltage}}", f"{mid_voltage}V")
 ### Support More Installations
 Add to `INSTALLATIONS` dict and update report generation loop.
 
+## Real-World Impact
+
+This skill was born from a real problem: **manual daily VRM checks are tedious.**
+
+### Before Boat Daily Check
+- Log into VRM dashboard daily
+- Navigate to installation
+- Check battery SOC, voltage, solar power
+- Check for alarms
+- Repeat for multiple boats
+- ⏱️ 2-3 minutes of manual work every morning
+
+### With Boat Daily Check
+- One beautiful email arrives at 7 AM
+- See all boats at a glance
+- Battery status, solar generation, alarms
+- Zero manual effort
+- ⏱️ 0 minutes of work, 100% information
+
+### Currently Monitoring
+- **Pitter Patter** (ID: 472601) — 100% SOC, solar charging, 0 alarms ✅
+- **Pegasus** (ID: 421054) — 100% SOC, AC powered, 1 active alert ⚠️
+
+### Broader Community Value
+Boat Daily Check solves this problem for anyone with Victron power systems:
+- Live-aboards who monitor their home daily
+- RV adventurers tracking power on remote trips
+- Fishing charter operators managing multiple boats
+- Off-grid cabin owners with solar systems
+- Tiny home builders automating their setup
+
+The skill is open-source, well-documented, and MIT-licensed so the entire Victron community can benefit.
+
 ## Requirements
 
 - **Python** 3.7+
@@ -328,7 +392,30 @@ MIT License — Feel free to use, modify, and distribute.
 - **VRM API Docs**: https://vrm-api-docs.victronenergy.com/
 - **Victron Community**: https://community.victronenergy.com/
 - **GitHub Reference**: https://github.com/dirkjanfaber/victron-vrm-api
-- **Report Issues**: [Submit via OpenClaw]
+- **Report Issues**: Open an issue on GitHub
+
+---
+
+## Get Started in 5 Minutes
+
+1. Get your VRM API token: https://vrm.victronenergy.com/access-tokens
+2. Find your installation ID (from VRM URL)
+3. Install: `clawhub install boat-daily-check` or `git clone` this repo
+4. Configure with your boat IDs
+5. Run: `python3 scripts/boat-email-report.py`
+6. Enjoy beautiful daily emails!
+
+See [GETTING_STARTED.md](GETTING_STARTED.md) for detailed setup.
+
+---
+
+## Why This Matters
+
+A production-grade monitoring skill for one of the most popular marine power systems. 
+
+Boat owners worldwide can now automate their daily power system checks instead of logging into VRM manually. This solves a real problem, has clean code, great documentation, and is licensed for sharing. 
+
+**The Victron community deserves tools that work as hard as their power systems do.** ⚡
 
 ---
 
