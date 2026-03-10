@@ -64,13 +64,13 @@ VRM_TOKEN = "your-token-here"
 
 INSTALLATIONS = {
     "boat1": {
-        "id": 472601,           # Your installation ID
-        "name": "Pitter Patter",  # Display name
+        "id": 000000,           # Your installation ID
+        "name": "Titanic",  # Display name
         "batteryInstance": 279,  # SmartShunt instance number
     },
     "boat2": {
-        "id": 421054,
-        "name": "Pegasus",
+        "id": 000001,
+        "name": "Endeavour",
         "batteryInstance": 279,
     }
 }

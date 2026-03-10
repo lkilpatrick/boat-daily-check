@@ -78,7 +78,7 @@ export VRM_TOKEN="your-token-here"
 ### 2. Find Your Installation ID
 Check your VRM dashboard URL:
 ```
-https://vrm.victronenergy.com/installation/472601/dashboard
+https://vrm.victronenergy.com/installation/123456/dashboard
                                          ^^^^^^
                                     Installation ID
 ```
@@ -91,7 +91,7 @@ vim scripts/boat-email-report.py
 # Set your token and installation IDs:
 VRM_TOKEN = "your-token-here"
 INSTALLATIONS = {
-    "boat1": {"id": 472601, "name": "My Boat", "batteryInstance": 279}
+    "boat1": {"id": 000000, "name": "My Boat", "batteryInstance": 279}
 }
 ```
 
@@ -189,15 +189,15 @@ VRM_TOKEN = "your-api-token"
 
 INSTALLATIONS = {
     "boat1": {
-        "id": 472601,              # Installation ID from VRM
-        "name": "Pitter Patter",   # Display name for email
+        "id": 000000,              # Installation ID from VRM
+        "name": "Titanic",   # Display name for email
         "batteryInstance": 279,    # SmartShunt instance (usually 279)
         "hasSolar": True,          # Fetch solar data?
         "hasInverter": False,      # Fetch inverter data?
     },
     "boat2": {
-        "id": 421054,
-        "name": "Pegasus",
+        "id": 000001,
+        "name": "Endeavour",
         "batteryInstance": 279,
         "hasSolar": False,
         "hasInverter": True,
@@ -359,9 +359,9 @@ This skill was born from a real problem: **manual daily VRM checks are tedious.*
 - Zero manual effort
 - ⏱️ 0 minutes of work, 100% information
 
-### Currently Monitoring
-- **Pitter Patter** (ID: 472601) — 100% SOC, solar charging, 0 alarms ✅
-- **Pegasus** (ID: 421054) — 100% SOC, AC powered, 1 active alert ⚠️
+### Example Systems Monitored
+- **Titanic** (ID: 000000) — Example boat with solar charging
+- **Endeavour** (ID: 000001) — Example boat with AC power
 
 ### Broader Community Value
 Boat Daily Check solves this problem for anyone with Victron power systems:

@@ -165,36 +165,37 @@ def extract_inverter_data(diagnostics):
 
 def generate_report(data):
     """Generate HTML email with populated data"""
-    template_path = Path(__file__).parent.parent / "templates" / "boat-email-template.html"
+    # Load bundled template
+    template_path = Path(__file__).parent / "boat-email-template.html"
     
-    # Create templates directory if needed
-    template_path.parent.mkdir(parents=True, exist_ok=True)
+    if not template_path.exists():
+        print(f"Error: Template not found at {template_path}", file=sys.stderr)
+        sys.exit(1)
     
-    # Use the template we created earlier
-    template_content = Path("/home/jeanclaude/.openclaw/workspace/cron-jobs/boat-daily-email-template.html").read_text()
+    template_content = template_path.read_text()
     
     # Replace placeholders
     html = template_content
     html = html.replace("{{date}}", datetime.now().strftime("%B %d, %Y"))
     
-    # Pitter Patter data
-    pp_data = data["pitterPatter"]
-    html = html.replace("{{pitterPatter.battery.soc}}", f"{pp_data['battery']['soc']:.1f}")
-    html = html.replace("{{pitterPatter.battery.voltage}}", f"{pp_data['battery']['voltage']:.2f}")
-    html = html.replace("{{pitterPatter.battery.current}}", f"{pp_data['battery']['current']:.2f}")
-    html = html.replace("{{pitterPatter.solar.power}}", pp_data["solar"]["power"])
-    html = html.replace("{{pitterPatter.solar.yieldToday}}", pp_data["solar"]["yieldToday"])
-    html = html.replace("{{pitterPatter.solar.maxChargePower}}", pp_data["solar"]["maxChargePower"])
-    html = html.replace("{{pitterPatter.solar.pvVoltage}}", pp_data["solar"]["pvVoltage"])
-    html = html.replace("{{pitterPatter.gateway.lastSeen}}", pp_data["gateway"]["lastSeen"])
+    # Example boat 1 data
+    boat1_data = data.get("boat1", {})
+    html = html.replace("{{boat1.battery.soc}}", f"{boat1_data.get('battery', {}).get('soc', 0):.1f}")
+    html = html.replace("{{boat1.battery.voltage}}", f"{boat1_data.get('battery', {}).get('voltage', 0):.2f}")
+    html = html.replace("{{boat1.battery.current}}", f"{boat1_data.get('battery', {}).get('current', 0):.2f}")
+    html = html.replace("{{boat1.solar.power}}", boat1_data.get("solar", {}).get("power", "0 W"))
+    html = html.replace("{{boat1.solar.yieldToday}}", boat1_data.get("solar", {}).get("yieldToday", "0 kWh"))
+    html = html.replace("{{boat1.solar.maxChargePower}}", boat1_data.get("solar", {}).get("maxChargePower", "0 W"))
+    html = html.replace("{{boat1.solar.pvVoltage}}", boat1_data.get("solar", {}).get("pvVoltage", "0 V"))
+    html = html.replace("{{boat1.gateway.lastSeen}}", boat1_data.get("gateway", {}).get("lastSeen", "unknown"))
     
-    # Pegasus data
-    pg_data = data["pegasus"]
-    html = html.replace("{{pegasus.battery.soc}}", f"{pg_data['battery']['soc']:.1f}")
-    html = html.replace("{{pegasus.battery.voltage}}", f"{pg_data['battery']['voltage']:.2f}")
-    html = html.replace("{{pegasus.battery.current}}", f"{pg_data['battery']['current']:.2f}")
-    html = html.replace("{{pegasus.acInput.status}}", pg_data["acInput"]["status"])
-    html = html.replace("{{pegasus.gateway.lastSeen}}", pg_data["gateway"]["lastSeen"])
+    # Example boat 2 data
+    boat2_data = data.get("boat2", {})
+    html = html.replace("{{boat2.battery.soc}}", f"{boat2_data.get('battery', {}).get('soc', 0):.1f}")
+    html = html.replace("{{boat2.battery.voltage}}", f"{boat2_data.get('battery', {}).get('voltage', 0):.2f}")
+    html = html.replace("{{boat2.battery.current}}", f"{boat2_data.get('battery', {}).get('current', 0):.2f}")
+    html = html.replace("{{boat2.acInput.status}}", boat2_data.get("acInput", {}).get("status", "unknown"))
+    html = html.replace("{{boat2.gateway.lastSeen}}", boat2_data.get("gateway", {}).get("lastSeen", "unknown"))
     
     # Handle alarms
     import re
