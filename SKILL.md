@@ -39,7 +39,7 @@ Each morning, a clean HTML email with:
 
 Each Victron system has an installation ID visible in the VRM URL:
 ```
-https://vrm.victronenergy.com/installation/472601/dashboard
+https://vrm.victronenergy.com/installation/000000/dashboard
                                          ^^^^^^
                                     Installation ID
 ```
